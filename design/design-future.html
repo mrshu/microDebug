@@ -1,0 +1,105 @@
+<html>
+<head>
+<script>
+var base64chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split("");
+var base64inv={};for(var i=0;i<base64chars.length;i++){base64inv[base64chars[i]]=i;}
+function base64_encode(s)
+{var r="";var p="";var c=s.length%3;if(c>0){for(;c<3;c++){p+='=';s+="\0";}}
+for(c=0;c<s.length;c+=3){if(c>0&&(c/3*4)%76==0){r+="\r\n";}
+var n=(s.charCodeAt(c)<<16)+(s.charCodeAt(c+1)<<8)+s.charCodeAt(c+2);n=[(n>>>18)&63,(n>>>12)&63,(n>>>6)&63,n&63];r+=base64chars[n[0]]+base64chars[n[1]]+base64chars[n[2]]+base64chars[n[3]];}
+return r.substring(0,r.length-p.length)+p;}
+function base64_decode(s)
+{s=s.replace(new RegExp('[^'+base64chars.join("")+'=]','g'),"");var p=(s.charAt(s.length-1)=='='?(s.charAt(s.length-2)=='='?'AA':'A'):"");var r="";s=s.substr(0,s.length-p.length)+p;for(var c=0;c<s.length;c+=4){var n=(base64inv[s.charAt(c)]<<18)+(base64inv[s.charAt(c+1)]<<12)+
+(base64inv[s.charAt(c+2)]<<6)+base64inv[s.charAt(c+3)];r+=String.fromCharCode((n>>>16)&255,(n>>>8)&255,n&255);}
+return r.substring(0,r.length-p.length);}
+	function toggle(t, id)
+	{
+		var div = t.previousSibling;
+		while(div.nodeType != 1){div = div.previousSibling};
+		div.style.display = (div.style.display == "block" ? "none" : "block");
+		t.innerHTML = String.fromCharCode(t.innerHTML == String.fromCharCode(9650) ? 9660 : 9650);
+	}
+	function fullscreen(t)
+	{
+		var div = t.parentNode.parentNode;
+		div.style.width = '100%';
+		div.style.height = '100%';
+		t.parentNode.style.height = '99%';
+		t.parentNode.style.width = '99%';
+	}
+	function append(w, id)
+	{
+		var div = document.getElementById(id);
+		div.innerHTML = div.innerHTML + base64_decode(w);
+	}
+	window.onload = function ()
+	{	
+		append('PHRhYmxlPjx0cj48dGQ+JGE8L3RkPjx0ZD5OVUxMPC90ZD48L3RyPjwvdGFibGU+','db');
+	}
+</script>
+</head>
+<body>
+<b id="f"> AAA</b>
+<style>
+	#dbg{
+		background-color: #fff;
+		width: 400px;
+		height: 300px;
+		z-index: 10000;
+		display: none;
+		border: 0.5px solid #ddd;
+		white-space: nowrap;
+		overflow: scroll;
+		font-family: 'Tahoma', arial, serif;
+		font-size: 120%;
+	}
+	#dbg-wrapper{
+		position: absolute;
+		left: 0px;
+		bottom: 0px;
+		padding: 4px;
+		margin: 3px;
+		background-color: #2C2A95;
+		z-index: 10001;
+	}
+	.toggle-link{
+		text-decoration: none;
+		color:#ccc;
+		margin: 3px;
+	}
+	.fullscreen{
+		position:absolute;
+		right:0px;
+		bottom:0px;
+	}
+</style>
+
+	<div id="dbg-wrapper">
+		<div id="dbg">
+		<a href="#" class='fullscreen' onclick="fullscreen(this);return false;">#</a>
+<style>
+.kw{
+	font-weight: bold;
+}
+.sc{
+	color:blue;
+	margin:0px 1px;
+	font-weight:bold;
+}
+.nm{
+	font-weight:bold;
+	color:#D4C522;
+}
+.ar{
+	margin-left:-10px;
+}
+.qt{
+	color: #c0f;
+}
+</style>
+	<table><tr><td class='nm' valign='top'>$a</td><td>(<span class='kw'>bool</span>) true</td></tr></table><table><tr><td class='nm' valign='top'>$b</td><td>(<span class='kw'>int</span>) 3</td></tr></table><table><tr><td class='nm' valign='top'>Dub::$pi</td><td>(<span class='kw'>float</span>) 3.14</td></tr></table><table><tr><td class='nm' valign='top'>$this->pi</td><td>(<span class='kw'>float</span>) 3.14</td></tr></table><table><tr><td class='nm' valign='top'>$c</td><td>(<span class='kw'>string</span>)(13) <span class='qt'>"</span><span class='sc'>\n</span>fero<span class='sc'>\t</span>taraba<span class='sc'>\n</span><span class='qt'>"</span></td></tr></table><table><tr><td class='nm' valign='top'>$d</td><td>(<span class='kw'>array</span>)(6)<br />{<br /><div class='ar'><table><tr><td class='nm' valign='top'>$out</td><td>(<span class='kw'>int</span>) 1</td></tr><tr><td class='nm' valign='top'>1</td><td>(<span class='kw'>int</span>) 2</td></tr><tr><td class='nm' valign='top'>2</td><td>(<span class='kw'>int</span>) 3</td></tr><tr><td class='nm' valign='top'>10</td><td>(<span class='kw'>int</span>) 4</td></tr><tr><td class='nm' valign='top'>a</td><td>(<span class='kw'>string</span>)(4) <span class='qt'>"</span>fero<span class='qt'>"</span></td></tr><tr><td class='nm' valign='top'>b</td><td>(<span class='kw'>string</span>)(6) <span class='qt'>"</span>taraba<span class='qt'>"</span></td></tr></table></div>}</td></tr></table><table><tr><td class='nm' valign='top'>$e</td><td>NULL</td></tr></table><table><tr><td class='nm' valign='top'>Dub::$two</td><td>(<span class='kw'>float</span>) 2.0</td></tr></table>
+		</div>
+		<a class="toggle-link db-toggle" href="#" onclick="toggle(this);return false;">&#9650;</a>	
+	</div>
+</body>
+</html>
