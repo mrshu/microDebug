@@ -48,44 +48,17 @@ return r.substring(0,r.length-p.length);}
 	div.innerHTML = div.innerHTML + base64_decode(w);
 	}
 
-	var font_max = 18;
-	var font_min = 8;
+var font_max = 18;
+var font_min = 8;
+function font_minus(t)
+{var tables=t.parentNode.getElementsByTagName('table');for(var i=0;i<tables.length;i++){if(!tables[i].style.fontSize){var size=12;}else{var size=parseInt(tables[i].style.fontSize.replace('px',''));}
+if(size>font_min){size-=1;}
+tables[i].style.fontSize=size+"px";}}
+function font_plus(t)
+{var tables=t.parentNode.getElementsByTagName('table');for(var i=0;i<tables.length;i++){if(!tables[i].style.fontSize){var size=12;}else{var size=parseInt(tables[i].style.fontSize.replace('px',''));}
+if(size<font_max){size+=1;}
+tables[i].style.fontSize=size+"px";}}
 
-	function font_minus(t)
-	{
-		var tables = t.parentNode.getElementsByTagName('table');
-		for(var i = 0;i<tables.length;i++){
-			if(!tables[i].style.fontSize){
-				var size = 12;
-			}else{
-				var size = parseInt(tables[i].style.fontSize.replace('px',''));
-			}
-
-			if(size>font_min){
-				size -= 1;
-			}
-			
-			tables[i].style.fontSize = size + "px";
-		}
-	}
-
-	function font_plus(t)
-	{
-		var tables = t.parentNode.getElementsByTagName('table');
-		for(var i = 0;i<tables.length;i++){
-			if(!tables[i].style.fontSize){
-				var size = 12;
-			}else{
-				var size = parseInt(tables[i].style.fontSize.replace('px',''));
-			}
-
-			if(size<font_max){
-				size += 1;
-			}
-			
-			tables[i].style.fontSize = size + "px";
-		}
-	}
 	window.onload = function ()
 	{	
 		dbg_append('PHRhYmxlPjx0cj48dGQ+JGE8L3RkPjx0ZD5OVUxMPC90ZD48L3RyPjwvdGFibGU+','dbg');

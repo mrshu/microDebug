@@ -90,7 +90,7 @@ class uDebug{
 		#dbg-wrapper{position:absolute;left:0;bottom:0;background-color:#F2A73D;z-index:10001;margin:3px;padding:4px}
 		.toggle-link{text-decoration:none;color:#303030}
 		.kw{font-weight:700;color:#8197bf}
-		.sc{color:blue;font-weight:700;margin:0 1px}
+		.sc{color:#00F2FF;font-weight:700;margin:0 1px}
 		.nm{font-weight:700;color:#fad07a}
 		.ar{margin-left:10px}
 		.qt{color:#c0f}
@@ -109,12 +109,26 @@ function dbg_toggle(t,id)
 {var div=t.previousSibling;while(div.nodeType!=1){div=div.previousSibling};div.style.display=(div.style.display=="block"?"none":"block");t.innerHTML=String.fromCharCode(t.innerHTML==String.fromCharCode(9650)?9660:9650);}
 function dbg_append(w,id)
 {var div=document.getElementById(id);div.innerHTML=div.innerHTML+base64_decode(w);}
+var font_max = 18;
+var font_min = 8;
+function font_minus(t)
+{var tables=t.parentNode.getElementsByTagName('table');for(var i=0;i<tables.length;i++){if(!tables[i].style.fontSize){var size=12;}else{var size=parseInt(tables[i].style.fontSize.replace('px',''));}
+if(size>font_min){size-=1;}
+tables[i].style.fontSize=size+"px";}}
+function font_plus(t)
+{var tables=t.parentNode.getElementsByTagName('table');for(var i=0;i<tables.length;i++){if(!tables[i].style.fontSize){var size=12;}else{var size=parseInt(tables[i].style.fontSize.replace('px',''));}
+if(size<font_max){size+=1;}
+tables[i].style.fontSize=size+"px";}}
 </script>
 		<?php
 		// and finally HTML
 		?>
 <div id="dbg-wrapper">
-	<div id="dbg"></div>
+	<div id="dbg">
+		<a href="#" onclick="font_minus(this);" style="color:white;position:absolute;bottom:0px;right:2px;text-decoration:none;font-weight:bold;">-</a>
+		<a href="#" onclick="font_plus(this);" style="color:white;position:absolute;bottom:0px;right:12px;text-decoration:none;font-weight:bold;">+</a>
+
+	</div>
 	<a class="toggle-link db-toggle" href="#" onclick="dbg_toggle(this);return false;">&#9650;</a>	
 </div>
 		<?php
